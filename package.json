@@ -1,0 +1,35 @@
+{
+  "name": "hubot-slack-interactive-messages",
+  "description": "A hubot wrapper for node-slack-interactive-messages",
+  "version": "0.0.1",
+  "author": "Farid Nouri Neshat <FaridN_SOAD@Yahoo.com>",
+  "license": "MIT",
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "slack"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://gitlab.olindata.com/olindata/hubot-slack-interactive-messages.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.olindata.com/olindata/hubot-slack-interactive-messages/issues"
+  },
+  "dependencies": {
+    "@slack/interactive-messages": "^0.1.2"
+  },
+  "peerDependencies": {
+    "hubot": "2.x"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.12.7",
+    "hubot-test-helper": "^1.3.0",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  }
+}
