@@ -1,7 +1,7 @@
 {
   "name": "hubot-interactive-messages",
   "description": "A hubot wrapper for node-slack-interactive-messages",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Farid Nouri Neshat <FaridN_SOAD@Yahoo.com>",
   "license": "MIT",
   "keywords": [
