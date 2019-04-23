@@ -28,7 +28,7 @@ Add this module as a peer dependency and in your README mention that this needs 
 
 ## Configuration
 
-You will need to set `SLACK_VERIFICATION_TOKEN` env variable and also set the `/slack/actions` and `/slack/options`
+You will need to set `SLACK_SIGNING_SECRET` env variable and also set the `/slack/actions` and `/slack/options`
  in the slack settings. You can find more info about that in
  [here](https://github.com/slackapi/node-slack-interactive-messages#configuration)
 
@@ -37,6 +37,15 @@ You will need to set `SLACK_VERIFICATION_TOKEN` env variable and also set the `/
 Given this module is properly install you can use `robot.setActionHandler` and `robot.setOptionsHandler` functions.
 These are the `slackMessages.action` and `slackMessages.options`
 from [@slack/interactive-messages](https://github.com/slackapi/node-slack-interactive-messages).
+
+
+```coffee
+# path/to/myhubot/scripts/myscript.coffee
+module.exports = (robot) ->
+  robot.on 'interactivity-loaded', ->
+    robot.setActionHandler /my_callback_id_.+/, (payload, respond) ->
+      console.log payload
+```
 
 ## Purpose and Future
 

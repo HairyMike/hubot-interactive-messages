@@ -2,7 +2,7 @@
 //   A hubot wrapper for @slack/interactive-messages.
 //
 // Configuration:
-//   SLACK_VERIFICATION_TOKEN, SLACK_ACTIONS_URL, SLACK_OPTIONS_URL
+//   SLACK_SIGNING_SECRET, SLACK_ACTIONS_URL, SLACK_OPTIONS_URL
 // Commands
 //
 // Notes:
@@ -20,13 +20,14 @@ module.exports = function (robot) {
 This module will not redefine them. Something is conflicting with this module.`);
   }
 
-  const slackMessages = createMessageAdapter(process.env.SLACK_VERIFICATION_TOKEN);
+  const slackInteractions = createMessageAdapter(process.env.SLACK_SIGNING_SECRET);
 
-  robot.setActionHandler = slackMessages.action.bind(slackMessages);
-  robot.setOptionsHandler = slackMessages.options.bind(slackMessages);
+  robot.setActionHandler = slackInteractions.action.bind(slackInteractions);
+  robot.setOptionsHandler = slackInteractions.options.bind(slackInteractions);
 
-  const messageMiddleware = slackMessages.expressMiddleware();
+  const messageMiddleware = slackInteractions.expressMiddleware();
 
   robot.router.use(process.env.SLACK_ACTIONS_URL || '/slack/actions', messageMiddleware);
   robot.router.use(process.env.SLACK_OPTIONS_URL || '/slack/options', messageMiddleware);
+  robot.emit('interactivity-loaded');
 };
