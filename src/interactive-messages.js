@@ -29,5 +29,15 @@ This module will not redefine them. Something is conflicting with this module.`)
 
   robot.router.use(process.env.SLACK_ACTIONS_URL || '/slack/actions', messageMiddleware);
   robot.router.use(process.env.SLACK_OPTIONS_URL || '/slack/options', messageMiddleware);
+
+  // create a copy of the express middleware stack
+  var middleware = robot.router.stack.slice();
+  // move the options middleware to the front
+  middleware.splice(0, 0, middleware.splice(middleware.length - 1, 1)[0]);
+  // move the actions middleware to the front
+  middleware.splice(0, 0, middleware.splice(middleware.length - 1, 1)[0]);
+  // reassign the middleware stack
+  robot.router.stack = middleware;
+
   robot.emit('interactivity-loaded');
 };
